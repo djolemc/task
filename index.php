@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 require 'config/init.php';
 
 $dbHandle = new PDO("mysql:host=$host;dbname=$db", $username, $password);
@@ -9,7 +9,6 @@ $dbHandle->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 $route = str_replace('', "", $_SERVER['REQUEST_URI']);
 $route = explode('/', $route);
 
-var_dump($route);
 
 switch ($route[2]) {
 
@@ -32,6 +31,11 @@ switch ($route[2]) {
     case 'registerUser':
         $user = new UserController($dbHandle);
         $user->register();
+        break;
+
+    case 'loginUser':
+        $user = new UserController($dbHandle);
+        $user->login();
         break;
 
     default:
