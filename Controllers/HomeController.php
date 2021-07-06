@@ -10,6 +10,7 @@ class HomeController {
 
     public static function showRegisterForm()
     {
+
         include 'Views/register.php';
     }
 

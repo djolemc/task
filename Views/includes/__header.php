@@ -6,18 +6,19 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Quantox Task</title>
+    <link rel="stylesheet" href="assets/css/main.css">
 </head>
 <body>
 
 <nav>
 
-    <ul>
-        <li><a href="index.php">Home</a></li>
-        <li><a href="login">Login</a></li>
-        <li><a href="register">Register</a></li>
+    <ul >
+        <li style="display: inline"><a href="index.php">Home</a></li>
+        <li style="display: inline"><a href="login">Login</a></li>
+        <li style="display: inline"><a href="register">Register</a></li>
 
-        <form action="search" method="post">
-            <input type="text" name="search" placeholder="Enter username or email">
+        <style="display: inline" form action="search" method="post">
+            <input type="text" name="search" placeholder="Search username or email">
             <input type="submit" value="Submit">
 
         </form>
