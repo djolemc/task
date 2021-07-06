@@ -5,8 +5,15 @@ class HomeController {
     public function show()
     {
 
-        echo 'test';
 
+        include 'Views/home.php';
+
+
+    }
+
+    public function showRegisterForm()
+    {
+        include 'Views/register.php';
     }
 
 }
