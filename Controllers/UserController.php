@@ -21,8 +21,6 @@ class UserController
         unset($_SESSION['old_user']);
         $user = new User($this->db);
 
-
-
         if ($user->validate()) {
             $user->createUser();
             $user->saveUser();

@@ -50,7 +50,6 @@ class User
         $result = $statement->fetch(PDO::FETCH_ASSOC);
 
         if ($result) {
-
             if (password_verify($password, $result['password'])) {
                 $this->name = $result['name'];
                 $this->email = $result['email'];
@@ -60,7 +59,6 @@ class User
                 return true;
             }
         }
-
     }
 
 
