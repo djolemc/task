@@ -5,7 +5,7 @@ require_once 'includes/__header.php';
 
 ?>
 
-<!--TODO Add post data to form-->
+    <H3>Please enter your data to register</H3>
     <form action="registerUser" method="post">
 
         <input required type="email" name="email"

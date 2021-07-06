@@ -6,7 +6,7 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Quantox Task</title>
-    <link rel="stylesheet" href="assets/css/main.css">
+
 </head>
 <body>
 
@@ -14,12 +14,20 @@
 
     <ul >
         <li style="display: inline"><a href="index.php">Home</a></li>
+
+
+        <?php if (!isset($_SESSION['logged_in'])) : ?>
+
         <li style="display: inline"><a href="login">Login</a></li>
         <li style="display: inline"><a href="register">Register</a></li>
 
-        <style="display: inline" form action="search" method="post">
+        <?php else: ?>
+            <li style="display: inline"><a href="logout">Logout</a></li>
+        <?php endif ?>
+
+        <form style="display: inline" action="search" method="post">
             <input type="text" name="search" placeholder="Search username or email">
-            <input type="submit" value="Submit">
+            <input type="submit" value="Search">
 
         </form>
 

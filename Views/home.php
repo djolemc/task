@@ -10,5 +10,6 @@ if (isset($_SESSION['msg'])) {
 
 }
 
+echo "<h3>Index page</h3>";
 
 require_once 'includes/__footer.php';

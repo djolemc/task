@@ -1,5 +1,6 @@
 <?php
 
+
 class User
 {
 
@@ -16,7 +17,6 @@ class User
 
     public function createUser()
     {
-
         $this->email = $_POST['email'];
         $this->name = $_POST['name'];
         $this->password = $_POST['password_1'];
@@ -25,7 +25,6 @@ class User
 
     public function saveUser()
     {
-
         $hash = password_hash($this->password, PASSWORD_DEFAULT);
 
         $sql = ("insert into users (email, name, password) values (:email, :name, :password);");
@@ -38,11 +37,6 @@ class User
 
         //TODO login registered user and redirect home
 
-    }
-
-    public function getUserName()
-    {
-        return $this->name;
     }
 
     public function loginUser($email, $password)
@@ -69,6 +63,7 @@ class User
 
     }
 
+
     /*
      * Find user by name or email
      * return array
@@ -79,6 +74,7 @@ class User
 
         $searchTerm = $_POST['search'];
 
+        if (strlen($searchTerm) < 1) return [];
         $sql = ("select email, name from  users where email like :email or name like :name ");
         $statement = $this->db->prepare($sql);
         $statement->execute([
@@ -130,7 +126,7 @@ class User
 
         //Check if both passwords match
         if ($_POST['password_1'] != $_POST['password_2']) {
-            $_SESSION['password_error'] = 'Passwords have to be same';
+            $_SESSION['password_error'] = 'Passwords doas not match';
             return false;
         }
 

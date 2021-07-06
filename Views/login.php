@@ -2,6 +2,15 @@
 require_once 'includes/__header.php';
 ?>
 
+<H3>Please enter your email and password to log in</H3>
+
+<?php
+
+
+if (isset($_SESSION['msg'])) {
+    echo "<h3>".$_SESSION['msg']."</h3>";
+    unset($_SESSION['msg']);
+}?>
 
     <form action="loginUser" method="post">
 
@@ -15,10 +24,4 @@ require_once 'includes/__header.php';
 
 <?php
 
-if (isset($_SESSION['msg'])) {
-    echo "<h3>".$_SESSION['msg']."</h3>";
-    unset($_SESSION['msg']);
-}
-
 require_once 'includes/__footer.php';
-?>

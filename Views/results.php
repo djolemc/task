@@ -12,6 +12,7 @@ if (isset($_SESSION['msg'])) {
 
 ?>
 
+<?php if (!empty($_SESSION['result'])) : ?>
 
 <table id="test">
 
@@ -40,4 +41,6 @@ if (isset($_SESSION['msg'])) {
 </table>
 
 <?php
+endif;
+
 require_once 'includes/__footer.php';

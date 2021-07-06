@@ -1,12 +1,5 @@
-ul {
-    display: inline;
-}
-
 body {
     background-color: green !important;
-    font-size: 22px;
-}
 
-#test thead {
-    background-color: green;
+    font-size: 22px;
 }
