@@ -63,11 +63,29 @@ class User {
         }
 
 
+    }
 
+    /*
+     * Find user by name or email
+     * return array
+     */
 
+    public function findUsers() :array
+    {
 
+        $searchTerm = $_POST['search'];
+
+        $sql = ("select email, name from  users where email like :email or name like :name ");
+        $statement = $this->db->prepare($sql);
+        $statement->execute([
+            "email" => '%'.$searchTerm.'%',
+            "name" =>'%'.$searchTerm.'%',
+        ]);
+
+        return $result = $statement->fetchAll(PDO::FETCH_ASSOC);
 
     }
+
 
 
 }

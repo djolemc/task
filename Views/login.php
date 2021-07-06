@@ -7,7 +7,7 @@ require_once 'includes/__header.php';
 
         <input type="text" name="email" placeholder="Enter your email">
         <br>
-        <input type="text" name="password" placeholder="Enter your password">
+        <input type="password" name="password" placeholder="Enter your password">
         <br>
         <input type="submit" value="Submit">
     </form>

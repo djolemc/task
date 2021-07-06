@@ -21,8 +21,7 @@ class UserController
         //TODO:
         //        $user->validate()
         $user->saveUser();
-
-        header("Location: index.php");
+        header("Location: home");
 
     }
     public function login() {
@@ -35,7 +34,7 @@ class UserController
 
         {
             $_SESSION['msg'] = "Welcome, ". $_SESSION['user'];
-            header("Location: index.php");
+            header("Location: home");
         }
 
         else {
@@ -43,7 +42,21 @@ class UserController
             header("Location: login");
         }
 
+    }
 
+    public function findUser()
+    {
+        $user = new User($this->db);
+        $result = $user->findUsers();
+        $_SESSION['result'] = $result;
+
+        if (empty($result)) {
+            $_SESSION['msg'] = "No results found";
+            header("Location: results");
+        } else {
+            unset($_SESSION['msg']);
+            header("Location: results");
+        }
 
 
     }

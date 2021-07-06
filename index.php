@@ -13,19 +13,21 @@ $route = explode('/', $route);
 switch ($route[2]) {
 
     case '':
+    case 'home':
     case 'index.php':
-        $home = new HomeController();
-        $home->show();
+       HomeController::show();
         break;
 
     case 'login':
-        $login = new HomeController();
-        $login->showLoginForm();
+        HomeController::showLoginForm();
+        break;
+
+    case 'results':
+        HomeController::showResults();
         break;
 
     case 'register':
-        $home = new HomeController();
-        $home->showRegisterForm();
+        HomeController::showRegisterForm();
         break;
 
     case 'registerUser':
@@ -37,6 +39,13 @@ switch ($route[2]) {
         $user = new UserController($dbHandle);
         $user->login();
         break;
+
+ case 'search':
+        $user = new UserController($dbHandle);
+        $user->findUser();
+        break;
+
+
 
     default:
         include 'Views/404.php';

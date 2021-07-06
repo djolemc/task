@@ -15,7 +15,13 @@
         <li><a href="index.php">Home</a></li>
         <li><a href="login">Login</a></li>
         <li><a href="register">Register</a></li>
-        <li>Search form...</li>
+
+        <form action="search" method="post">
+            <input type="text" name="search" placeholder="Enter username or email">
+            <input type="submit" value="Submit">
+
+        </form>
+
     </ul>
 
 </nav>
