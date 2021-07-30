@@ -1,10 +1,9 @@
 <?php
 
 require_once 'Models/User.php';
+require_once 'classes/Validator.php';
 
 class UserController
-
-//Todo: move validation to Validation class
 
 {
     private $db;
@@ -20,8 +19,10 @@ class UserController
     {
         unset($_SESSION['old_user']);
         $user = new User($this->db);
+        $validator = new Validator($this->db);
 
-        if ($user->validate()) {
+
+        if ($validator->validate()) {
             $user->createUser();
             $user->saveUser();
             $_SESSION['msg'] = "Welcome, " . $_POST['name'];
