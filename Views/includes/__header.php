@@ -25,7 +25,7 @@
             <li style="display: inline"><a href="logout">Logout</a></li>
         <?php endif ?>
 
-        <form style="display: inline" action="search" method="post">
+        <form style="display: inline" action="results" method="post">
             <input type="text" name="search" placeholder="Search username or email">
             <input type="submit" value="Search">
 

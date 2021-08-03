@@ -1,5 +1,8 @@
 <?php
 
+require_once 'Models/User.php';
+
+
 class HomeController
 {
 
@@ -18,10 +21,16 @@ class HomeController
         include 'Views/login.php';
     }
 
-    public static function showResults()
+    public static function showResults($db)
+
     {
-        if (isset($_SESSION['logged_in'])) {
-            include 'Views/results.php';
+
+         if (isset($_SESSION['logged_in'])) {
+             $search = $_POST['search'];
+             $user = new User($db);
+             $results = $user->findUsers($search);
+             include 'Views/results.php';
+
         } else {
             $_SESSION['msg'] = "Please login";
             include 'Views/login.php';

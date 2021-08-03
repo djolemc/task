@@ -29,7 +29,7 @@ switch ($route[2]) {
         break;
 
     case 'results':
-        HomeController::showResults();
+        HomeController::showResults($dbHandle);
         break;
 
     case 'register':
@@ -46,10 +46,6 @@ switch ($route[2]) {
         $user->login();
         break;
 
- case 'search':
-        $user = new UserController($dbHandle);
-        $user->findUser();
-        break;
 
     default:
         include 'Views/404.php';

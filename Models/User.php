@@ -65,16 +65,15 @@ class User
      * return array
      */
 
-    public function findUsers(): array
+    public function findUsers($search): array
     {
-        $searchTerm = $_POST['search'];
 
-        if (strlen($searchTerm) < 1) return [];
+        if (strlen($search) < 1) return [];
         $sql = ("select email, name from  users where email like :email or name like :name ");
         $statement = $this->db->prepare($sql);
         $statement->execute([
-            "email" => '%' . $searchTerm . '%',
-            "name" => '%' . $searchTerm . '%',
+            "email" => '%' . $search . '%',
+            "name" => '%' . $search . '%',
         ]);
 
         return $statement->fetchAll(PDO::FETCH_ASSOC);

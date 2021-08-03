@@ -49,21 +49,6 @@ class UserController
         }
     }
 
-    public function findUser()
-    {
-        $user = new User($this->db);
-        $result = $user->findUsers();
-        $_SESSION['result'] = $result;
-
-        if (empty($result)) {
-            $_SESSION['msg'] = "No results found";
-            header("Location: results");
-        } else {
-            unset($_SESSION['msg']);
-            header("Location: results");
-        }
-    }
-
     public static function logout()
     {
         session_destroy();

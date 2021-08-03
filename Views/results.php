@@ -12,7 +12,7 @@ if (isset($_SESSION['msg'])) {
 
 ?>
 
-<?php if (!empty($_SESSION['result'])) : ?>
+<?php if (!empty($results)) : ?>
 
 <table id="test">
 
@@ -25,7 +25,8 @@ if (isset($_SESSION['msg'])) {
     </thead>
     <tbody>
 
-    <?php foreach ($_SESSION['result'] as $result) : ?>
+
+    <?php foreach ($results as $result) : ?>
 
     <tr>
         <td><?php echo $result['name']?></td>
@@ -40,7 +41,13 @@ if (isset($_SESSION['msg'])) {
 
 </table>
 
-<?php
-endif;
+<?php else:  ?>
+
+    <tr>
+        <td><?php echo 'No results found'?></td>
+    </tr>
+
+
+<?php endif;
 
 require_once 'includes/__footer.php';
