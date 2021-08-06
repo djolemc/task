@@ -2,56 +2,49 @@
 
 require_once 'Models/User.php';
 require_once 'classes/Validator.php';
+require_once 'Controllers/Controller.php';
 
-class UserController
+class UserController extends Controller
 
 {
-    private $db;
 
 
-    public function __construct($db)
-    {
-        $this->db = $db;
-
-    }
-
-    public function register()
+    public function registerUser()
     {
         unset($_SESSION['old_user']);
-        $user = new User($this->db);
-        $validator = new Validator($this->db);
-
+        $user = new User();
+        $validator = new Validator();
 
         if ($validator->validate()) {
             $user->createUser();
             $user->saveUser();
             $_SESSION['msg'] = "Welcome, " . $_POST['name'];
-            header("Location: home");
+            header("Location: index.php");
         } else {
             $_SESSION['old_user'] = $_POST;
-            header("Location: register");
+            header("Location: index.php?module=home&option=showRegisterForm");
 
         }
     }
 
-    public function login()
+    public function loginUser()
     {
         $email = $_POST['email'];
         $password = $_POST['password'];
-        $user = new User($this->db);
+        $user = new User();
 
         if ($user->loginUser($email, $password)) {
             $_SESSION['msg'] = "Welcome, " . $_SESSION['user'];
-            header("Location: home");
+            header("Location: index.php");
         } else {
             $_SESSION['msg'] = "Error loging in. Check your email and password";
-            header("Location: login");
+            header("Location: index.php?module=home&option=showLoginForm");
         }
     }
 
     public static function logout()
     {
         session_destroy();
-        header("Location: home");
+        header("Location: index.php");
     }
 }

@@ -5,9 +5,11 @@ class Validator
     private $db;
 
 
-    public function __construct($db)
+    public function __construct()
     {
-        $this->db = $db;
+        $dbh = DatabaseConnection::getInstance();
+        $dbc= $dbh->getConnection();
+        $this->db=$dbc;
     }
 
 
@@ -32,7 +34,7 @@ class Validator
 
         //Check if both passwords match
         if ($_POST['password_1'] != $_POST['password_2']) {
-            $_SESSION['password_error'] = 'Passwords doas not match';
+            $_SESSION['password_error'] = 'Passwords does not match';
             return false;
         }
 
@@ -64,10 +66,13 @@ class Validator
         } else return true;
     }
 
-    private function isRegistered($email)
+    public function isRegistered($email)
     {
+        $dbh = DatabaseConnection::getInstance();
+        $dbc= $dbh->getConnection();
+
         $sql = ("select * from  users where email = :email ");
-        $statement = $this->db->prepare($sql);
+        $statement = $dbc->prepare($sql);
         $statement->execute([
             "email" => $email,
 

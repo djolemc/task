@@ -8,11 +8,11 @@ class User
     private $name;
     private $password;
     private $db;
-
-
-    public function __construct($db)
+    public function __construct()
     {
-        $this->db = $db;
+        $dbh = DatabaseConnection::getInstance();
+        $dbc= $dbh->getConnection();
+        $this->db = $dbc;
     }
 
     public function createUser()

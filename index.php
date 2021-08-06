@@ -2,53 +2,19 @@
 session_start();
 require 'config/init.php';
 
-$dbHandle = new PDO("mysql:host=$host;dbname=$db", $username, $password);
-$dbHandle->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-$dbHandle->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+DatabaseConnection::connect($host, $db, $username, $password);
 
 
-//TODO: Create Router class and make improvements
+$module = $_GET['module'] ?? 'home';
+$option = $_GET['option'] ?? 'show';
 
-$route = str_replace('', "", $_SERVER['REQUEST_URI']);
-$route = explode('/', $route);
+$moduleName = ucfirst(strtolower($module))."Controller";
+$controllerFile = "Controllers/".$moduleName.".php";
 
-switch ($route[2]) {
-
-    case '':
-    case 'home':
-    case 'index.php':
-       HomeController::show();
-        break;
-
-    case 'login':
-        HomeController::showLoginForm();
-        break;
-
-    case 'logout':
-        UserController::logout();
-        break;
-
-    case 'results':
-        HomeController::showResults($dbHandle);
-        break;
-
-    case 'register':
-        HomeController::showRegisterForm();
-        break;
-
-    case 'registerUser':
-        $user = new UserController($dbHandle);
-        $user->register();
-        break;
-
-    case 'loginUser':
-        $user = new UserController($dbHandle);
-        $user->login();
-        break;
-
-
-    default:
-        include 'Views/404.php';
-        break;
-
+if (file_exists($controllerFile)) {
+    require_once $controllerFile;
+    $controller = new $moduleName();
+    $controller->runAction($option);
 }
+
+

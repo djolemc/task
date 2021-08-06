@@ -18,14 +18,14 @@
 
         <?php if (!isset($_SESSION['logged_in'])) : ?>
 
-        <li style="display: inline"><a href="login">Login</a></li>
-        <li style="display: inline"><a href="register">Register</a></li>
+        <li style="display: inline"><a href="index.php?module=home&option=showLoginForm">Login</a></li>
+        <li style="display: inline"><a href="index.php?module=home&option=showRegisterForm">Register</a></li>
 
         <?php else: ?>
-            <li style="display: inline"><a href="logout">Logout</a></li>
+            <li style="display: inline"><a href="index.php?module=user&option=logout">Logout</a></li>
         <?php endif ?>
 
-        <form style="display: inline" action="results" method="post">
+        <form style="display: inline" action="index.php?module=home&option=showResults" method="post">
             <input type="text" name="search" placeholder="Search username or email">
             <input type="submit" value="Search">
 

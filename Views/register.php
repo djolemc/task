@@ -6,7 +6,7 @@ require_once 'includes/__header.php';
 ?>
 
     <H3>Please enter your data to register</H3>
-    <form action="registerUser" method="post">
+    <form action="index.php?module=user&option=registerUser" method="post">
 
         <input required type="email" name="email"
         value="<?php echo isset($_SESSION['old_user']) ? $_SESSION['old_user']['email'] :  '' ?>"

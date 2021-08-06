@@ -1,10 +1,20 @@
 <?php
 
 require_once 'Models/User.php';
+require_once 'Controllers/Controller.php';
 
 
-class HomeController
+class HomeController extends Controller
 {
+
+    private $db;
+
+    public function __construct()
+    {
+        $dbh = DatabaseConnection::getInstance();
+        $dbc= $dbh->getConnection();
+        $this->db=$dbc;
+    }
 
     public static function show()
     {
@@ -21,13 +31,13 @@ class HomeController
         include 'Views/login.php';
     }
 
-    public static function showResults($db)
+    public  function showResults()
 
     {
 
          if (isset($_SESSION['logged_in'])) {
              $search = $_POST['search'];
-             $user = new User($db);
+             $user = new User();
              $results = $user->findUsers($search);
              include 'Views/results.php';
 
@@ -36,5 +46,6 @@ class HomeController
             include 'Views/login.php';
         }
     }
+
 
 }

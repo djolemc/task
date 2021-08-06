@@ -12,7 +12,7 @@ if (isset($_SESSION['msg'])) {
     unset($_SESSION['msg']);
 }?>
 
-    <form action="loginUser" method="post">
+    <form action="index.php?module=user&option=loginUser" method="post">
 
         <input type="text" name="email" placeholder="Enter your email">
         <br>
