@@ -18,7 +18,11 @@ class UserController extends Controller
         if ($validator->validate()) {
             $user->createUser();
             $user->saveUser();
+            $user->loginUser($user->getEmail(), $user->getPassword());
+
             $_SESSION['msg'] = "Welcome, " . $_POST['name'];
+
+
             header("Location: index.php");
         } else {
             $_SESSION['old_user'] = $_POST;
