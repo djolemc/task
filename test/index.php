@@ -10,7 +10,7 @@ $validator = new Validator();
 
 //Test parametri
 $username = "email@email.com";
-$password = "password";
+$password = "passwor#d1";
 $password_2 = "password1";
 
 

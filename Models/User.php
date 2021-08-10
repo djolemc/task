@@ -8,6 +8,7 @@ class User
     private $name;
     private $password;
     private $db;
+
     public function __construct()
     {
         $dbh = DatabaseConnection::getInstance();
@@ -35,6 +36,18 @@ class User
             "password" => $hash,
         ]);
 
+    }
+
+        public function isRegistered()
+    {
+        $sql = ("select * from  users where email = :email ");
+        $statement = $this->db->prepare($sql);
+        $statement->execute([
+            "email" => $this->email,
+
+        ]);
+        $result = $statement->fetch(PDO::FETCH_ASSOC);
+        if ($result) return true;
     }
 
     public function loginUser($email, $password)

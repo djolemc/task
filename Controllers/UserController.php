@@ -1,7 +1,7 @@
 <?php
 
 require_once 'Models/User.php';
-require_once 'classes/Validator.php';
+require_once 'classes/ValidatorWrapper.php';
 require_once 'Controllers/Controller.php';
 
 class UserController extends Controller
@@ -12,16 +12,25 @@ class UserController extends Controller
     public function registerUser()
     {
         unset($_SESSION['old_user']);
+
         $user = new User();
-        $validator = new Validator();
+        $user->createUser();
+
+
+        $validator = new ValidatorWrapper(5, 20);
+
+        if ($user->isRegistered()) {
+            $_SESSION['old_user'] = $_POST;
+
+            $_SESSION['mail_error'] = 'User already registered!';
+            header("Location: index.php?module=home&option=showRegisterForm");
+        };
 
         if ($validator->validate()) {
-            $user->createUser();
+
             $user->saveUser();
             $user->loginUser($user->getEmail(), $user->getPassword());
-
             $_SESSION['msg'] = "Welcome, " . $_POST['name'];
-
 
             header("Location: index.php");
         } else {

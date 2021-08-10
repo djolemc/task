@@ -1,8 +1,6 @@
 <?php
 require_once 'includes/__header.php';
 
-
-
 ?>
 
     <H3>Please enter your data to register</H3>
@@ -29,5 +27,7 @@ require_once 'includes/__header.php';
 
 
 <?php
+
+
 require_once 'includes/__footer.php';
 ?>

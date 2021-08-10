@@ -16,6 +16,8 @@ class Validator_2
         $dbh = DatabaseConnection::getInstance();
         $dbc= $dbh->getConnection();
 
+        var_dump($dbc);
+
         $this->dbc = $dbc;
 
 
