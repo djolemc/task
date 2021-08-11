@@ -8,7 +8,6 @@ class UserController extends Controller
 
 {
 
-
     public function registerUser()
     {
         unset($_SESSION['old_user']);
@@ -16,23 +15,27 @@ class UserController extends Controller
         $user = new User();
         $user->createUser();
 
+        $username = $_POST['email'];
+        $password = $_POST['password_1'];
+        $password_2 = $_POST['password_2'];
+
 
         $validator = new ValidatorWrapper(5, 20);
 
         if ($user->isRegistered()) {
             $_SESSION['old_user'] = $_POST;
-
             $_SESSION['mail_error'] = 'User already registered!';
             header("Location: index.php?module=home&option=showRegisterForm");
+
         };
 
-        if ($validator->validate()) {
+        if ($validator->validate($username, $password, $password_2)) {
 
             $user->saveUser();
             $user->loginUser($user->getEmail(), $user->getPassword());
             $_SESSION['msg'] = "Welcome, " . $_POST['name'];
-
             header("Location: index.php");
+
         } else {
             $_SESSION['old_user'] = $_POST;
             header("Location: index.php?module=home&option=showRegisterForm");

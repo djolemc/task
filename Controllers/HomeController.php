@@ -23,6 +23,9 @@ class HomeController extends Controller
 
     public static function showRegisterForm()
     {
+
+
+
         include 'Views/register.php';
     }
 
