@@ -6,6 +6,7 @@ class Validator
     protected $min;
     protected $max;
 
+
     public function __construct($minPassLength, $maxPassLength)
     {
         $this->min = $minPassLength;
@@ -45,6 +46,8 @@ class Validator
         }
 
     }
+
+
 
 
 

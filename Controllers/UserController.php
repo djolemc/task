@@ -1,7 +1,6 @@
 <?php
 
 require_once 'Models/User.php';
-require_once 'classes/ValidatorWrapper.php';
 require_once 'Controllers/Controller.php';
 
 class UserController extends Controller
@@ -20,23 +19,46 @@ class UserController extends Controller
         $password_2 = $_POST['password_2'];
 
 
-        $validator = new ValidatorWrapper(5, 20);
+        $validator = new Validation();
 
         if ($user->isRegistered()) {
+
             $_SESSION['old_user'] = $_POST;
             $_SESSION['mail_error'] = 'User already registered!';
             header("Location: index.php?module=home&option=showRegisterForm");
-
+            exit();
         };
 
-        if ($validator->validate($username, $password, $password_2)) {
 
+        if (!$validator
+            ->addRule(new ValidateMinimum(3))
+            ->addRule(new ValidateMaximum(20))
+            ->addRule(new ValidateNoEmptySpaces())
+            ->addRule(new ValidateSpecialCharacter())
+            ->validate($password)) {
+
+//            $_SESSION['validationRules']['errors'] = $validator->getAllErrorMessages();
+
+        }
+
+        if (!$validator
+            ->addRule(new ValidateEmail())
+            ->validate($username)) {
+            echo 'usao';
+            $_SESSION['errors'] = $validator->getAllErrorMessages();
+            die(var_dump($validator->getAllErrorMessages()));
+        }
+
+        var_dump($_SESSION);
+
+        if ($validator) {
             $user->saveUser();
             $user->loginUser($user->getEmail(), $user->getPassword());
             $_SESSION['msg'] = "Welcome, " . $_POST['name'];
             header("Location: index.php");
 
         } else {
+
             $_SESSION['old_user'] = $_POST;
             header("Location: index.php?module=home&option=showRegisterForm");
 

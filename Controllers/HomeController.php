@@ -21,11 +21,9 @@ class HomeController extends Controller
         include 'Views/home.php';
     }
 
+
     public static function showRegisterForm()
     {
-
-
-
         include 'Views/register.php';
     }
 
@@ -34,10 +32,10 @@ class HomeController extends Controller
         include 'Views/login.php';
     }
 
+
     public  function showResults()
 
     {
-
          if (isset($_SESSION['logged_in'])) {
              $search = $_POST['search'];
              $user = new User();
