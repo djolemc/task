@@ -36,20 +36,15 @@ class UserController extends Controller
             ->addRule(new ValidateNoEmptySpaces())
             ->addRule(new ValidateSpecialCharacter())
             ->validate($password)) {
-
-//            $_SESSION['validationRules']['errors'] = $validator->getAllErrorMessages();
-
+            $_SESSION['validationRules']['errors'] = $validator->getAllErrorMessages();
         }
 
         if (!$validator
             ->addRule(new ValidateEmail())
             ->validate($username)) {
-            echo 'usao';
             $_SESSION['errors'] = $validator->getAllErrorMessages();
-            die(var_dump($validator->getAllErrorMessages()));
-        }
 
-        var_dump($_SESSION);
+        }
 
         if ($validator) {
             $user->saveUser();
@@ -58,7 +53,6 @@ class UserController extends Controller
             header("Location: index.php");
 
         } else {
-
             $_SESSION['old_user'] = $_POST;
             header("Location: index.php?module=home&option=showRegisterForm");
 

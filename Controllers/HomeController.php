@@ -32,7 +32,6 @@ class HomeController extends Controller
         include 'Views/login.php';
     }
 
-
     public  function showResults()
 
     {
