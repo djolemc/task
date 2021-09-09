@@ -9,11 +9,9 @@ class User
     private $password;
     private $db;
 
-    public function __construct()
+    public function __construct($db)
     {
-        $dbh = DatabaseConnection::getInstance();
-        $dbc = $dbh->getConnection();
-        $this->db = $dbc;
+        $this->db = $db;
     }
 
     public function createUser()

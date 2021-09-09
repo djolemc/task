@@ -61,7 +61,7 @@ class UserController extends Controller
     {
         $email = $_POST['email'];
         $password = $_POST['password'];
-        $user = new User();
+        $user = new User($this->db);
 
         if ($user->loginUser($email, $password)) {
             $_SESSION['msg'] = "Welcome, " . $_SESSION['user'];

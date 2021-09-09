@@ -3,6 +3,8 @@ session_start();
 require 'config/init.php';
 
 DatabaseConnection::connect($host, $db, $username, $password);
+$dbh = DatabaseConnection::getInstance();
+$dbc = $dbh->getConnection();
 
 
 $module = $_GET['module'] ?? 'home';
@@ -13,7 +15,7 @@ $controllerFile = "Controllers/".$moduleName.".php";
 
 if (file_exists($controllerFile)) {
     require_once $controllerFile;
-    $controller = new $moduleName();
+    $controller = new $moduleName($dbc);
     $controller->runAction($option);
 }
 

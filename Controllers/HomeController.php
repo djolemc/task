@@ -7,15 +7,6 @@ require_once 'Controllers/Controller.php';
 class HomeController extends Controller
 {
 
-    private $db;
-
-    public function __construct()
-    {
-        $dbh = DatabaseConnection::getInstance();
-        $dbc = $dbh->getConnection();
-        $this->db = $dbc;
-    }
-
     public static function show()
     {
         include 'Views/home.php';
@@ -37,7 +28,7 @@ class HomeController extends Controller
     {
         if (isset($_SESSION['logged_in'])) {
             $search = $_POST['search'];
-            $user = new User();
+            $user = new User($this->db);
             $results = $user->findUsers($search);
             include 'Views/results.php';
 
