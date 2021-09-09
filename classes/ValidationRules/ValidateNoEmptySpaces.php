@@ -4,14 +4,16 @@ class ValidateNoEmptySpaces implements ValidateRule
 
 {
 
-    function validateRule($value) {
-        if (strpos($value,' ') === false) {
+    function validateRule($value)
+    {
+        if (strpos($value, ' ') === false) {
             return true;
         }
         return false;
     }
 
-    function getErrorMessage(){
+    function getErrorMessage()
+    {
         return "No empty spaces allowed.";
     }
 

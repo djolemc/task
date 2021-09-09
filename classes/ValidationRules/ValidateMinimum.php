@@ -17,7 +17,8 @@ class ValidateMinimum implements ValidateRule
         return true;
     }
 
-    function getErrorMessage(){
-        return "Minimum value is less than ". $this->minimum;
+    function getErrorMessage()
+    {
+        return "Minimum value is less than " . $this->minimum;
     }
 }

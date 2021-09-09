@@ -12,8 +12,8 @@ class ValidateEmail implements ValidateRule
         return true;
     }
 
-
-    function getErrorMessage(){
+    function getErrorMessage()
+    {
         return "Email format is not correct.";
     }
 }

@@ -5,7 +5,7 @@ class ValidateSpecialCharacter implements ValidateRule
 
     private $rule;
 
-    public function __construct($rule = "/[^a-zA-Z0-9]+/" )
+    public function __construct($rule = "/[^a-zA-Z0-9]+/")
     {
         $this->rule = $rule;
     }

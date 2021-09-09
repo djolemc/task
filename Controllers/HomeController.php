@@ -12,8 +12,8 @@ class HomeController extends Controller
     public function __construct()
     {
         $dbh = DatabaseConnection::getInstance();
-        $dbc= $dbh->getConnection();
-        $this->db=$dbc;
+        $dbc = $dbh->getConnection();
+        $this->db = $dbc;
     }
 
     public static function show()
@@ -32,14 +32,14 @@ class HomeController extends Controller
         include 'Views/login.php';
     }
 
-    public  function showResults()
+    public function showResults()
 
     {
-         if (isset($_SESSION['logged_in'])) {
-             $search = $_POST['search'];
-             $user = new User();
-             $results = $user->findUsers($search);
-             include 'Views/results.php';
+        if (isset($_SESSION['logged_in'])) {
+            $search = $_POST['search'];
+            $user = new User();
+            $results = $user->findUsers($search);
+            include 'Views/results.php';
 
         } else {
             $_SESSION['msg'] = "Please login";

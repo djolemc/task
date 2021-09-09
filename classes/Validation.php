@@ -8,7 +8,7 @@ class Validation
 
     public function addRule(ValidateRule $rule)
     {
-        $this->rules[]=$rule;
+        $this->rules[] = $rule;
         return $this;
     }
 
@@ -25,7 +25,8 @@ class Validation
         return true;
     }
 
-    public function getAllErrorMessages() {
+    public function getAllErrorMessages()
+    {
         return $this->errorMessages;
     }
 

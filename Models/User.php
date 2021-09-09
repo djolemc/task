@@ -12,7 +12,7 @@ class User
     public function __construct()
     {
         $dbh = DatabaseConnection::getInstance();
-        $dbc= $dbh->getConnection();
+        $dbc = $dbh->getConnection();
         $this->db = $dbc;
     }
 
@@ -38,7 +38,7 @@ class User
 
     }
 
-        public function isRegistered()
+    public function isRegistered()
     {
         $sql = ("select * from  users where email = :email ");
         $statement = $this->db->prepare($sql);
@@ -72,7 +72,6 @@ class User
         }
     }
 
-
     /*
      * Find user by name or email
      * return array
@@ -80,7 +79,6 @@ class User
 
     public function findUsers($search): array
     {
-
         if (strlen($search) < 1) return [];
         $sql = ("select email, name from  users where email like :email or name like :name ");
         $statement = $this->db->prepare($sql);
@@ -109,8 +107,6 @@ class User
     {
         return $this->password;
     }
-
-
 
 
 }

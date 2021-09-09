@@ -17,7 +17,8 @@ class ValidateMaximum implements ValidateRule
         return true;
     }
 
-    function getErrorMessage(){
-        return "Maximum value is over ". $this->maximum;
+    function getErrorMessage()
+    {
+        return "Maximum value is over " . $this->maximum;
     }
 }

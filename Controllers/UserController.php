@@ -18,7 +18,6 @@ class UserController extends Controller
         $password = $_POST['password_1'];
         $password_2 = $_POST['password_2'];
 
-
         $validator = new Validation();
 
         if ($user->isRegistered()) {
@@ -28,7 +27,6 @@ class UserController extends Controller
             header("Location: index.php?module=home&option=showRegisterForm");
             exit();
         };
-
 
         if (!$validator
             ->addRule(new ValidateMinimum(3))

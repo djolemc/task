@@ -14,18 +14,26 @@ final class DatabaseConnection
         return self::$instance;
     }
 
-    private function __construct(){}
+    private function __construct()
+    {
+    }
 
-    private function __clone(){}
+    private function __clone()
+    {
+    }
 
-    private function __wakeup(){}
+    private function __wakeup()
+    {
+    }
 
-    public static function connect($host, $dbName, $user, $password) {
+    public static function connect($host, $dbName, $user, $password)
+    {
 
         self::$connection = new PDO("mysql:dbname=$dbName;host=$host", $user, $password);
     }
 
-    public static function getConnection(){
+    public static function getConnection()
+    {
         return self::$connection;
     }
 
