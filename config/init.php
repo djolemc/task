@@ -1,7 +1,5 @@
 <?php
 
-require_once 'config.php';
-
 
 spl_autoload_register('myAutoLoader');
 

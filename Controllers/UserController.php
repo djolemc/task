@@ -7,6 +7,11 @@ class UserController extends Controller
 
 {
 
+    public function __construct($db)
+    {
+        parent::__construct($db);
+    }
+
     public function registerUser()
     {
         unset($_SESSION['old_user']);

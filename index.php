@@ -1,8 +1,12 @@
 <?php
 session_start();
-require 'config/init.php';
+require_once "config/init.php";
 
-DatabaseConnection::connect($host, $db, $username, $password);
+$env = new DotEnv(".env");
+
+
+
+DatabaseConnection::connect(getenv("HOST"), getenv("DATABASE"), getenv("USERNAME"), getenv("PASSWORD"));
 $dbh = DatabaseConnection::getInstance();
 $dbc = $dbh->getConnection();
 
